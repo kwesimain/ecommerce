@@ -1,24 +1,90 @@
-/* Additional styles for new sections */
+/* Reset margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    font-family: Arial, sans-serif; /* Consider a web-friendly font */
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Cover Section Styles */
+.cover {
+    background-image: url('cover-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cover img {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Features Section Styles */
+#features {
+    padding: 50px 10%;
+    background-color: #f9f9f9;
+    text-align: center;
+}
 
 .feature {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .feature img {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-#about, #video {
-    padding: 20px;
+/* About Section Styles */
+#about {
+    padding: 50px 10%;
     text-align: center;
 }
 
 #about ul {
     list-style-type: none;
-    padding: 0;
+    padding: 20px;
 }
 
 #about ul li {
@@ -26,8 +92,40 @@
     margin-right: 20px;
 }
 
+#about ul li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Video Section Styles */
+#video {
+    padding: 50px 10%;
+    text-align: center;
+}
+
 video {
-    width: 80%;
-    max-width: 600px; /* Adjust based on your layout */
+    width: 100%;
+    max-width: 600px;
     margin-bottom: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature img {
+        max-width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
 }
