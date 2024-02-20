@@ -40,4 +40,4 @@ class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
         for the currently authenticated user.
         """
         user = self.request.user
-        return Order.objects.filter(user=user)
+        return self.queryset.filter(user=user)

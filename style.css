@@ -34,7 +34,7 @@ nav ul li a {
 
 /* Cover Section Styles */
 .cover {
-    background-image: url('cover-image.jpg');
+    background-image: url('cover.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
