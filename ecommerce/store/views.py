@@ -1,43 +1,26 @@
 
+from django.shortcuts import get_object_or_404, render
 from rest_framework import generics, permissions
-from .models import Product, Order
+from .models import Product, Category
 from .serializers import ProductSerializer, OrderSerializer
 from .permissions import IsAdminOrReadOnly
 
 
 # Create your views here.
 
-class ProductList(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    permission_classes = [IsAdminOrReadOnly]
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'store/product_list.html', {'products': products})
 
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    permission_classes = [IsAdminOrReadOnly]
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'store/product_detail.html', {'product': product})
 
-class OrderList(generics.ListCreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'store/category_list.html', {'categories': categories})
 
-    def get_queryset(self):
-        # Users can only see their own orders
-        return Order.objects.filter(user=self.request.user)
-    
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        """
-        This view should return a list of all the orders
-        for the currently authenticated user.
-        """
-        user = self.request.user
-        return self.queryset.filter(user=user)
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    products = Product.objects.filter(category=category)
+    return render(request, 'store/category_detail.html', {'category': category, 'products': products})
